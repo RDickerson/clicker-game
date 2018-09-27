@@ -1,10 +1,12 @@
 import React, { Component } from "react"
+import UserInfoBar from "./UserInfoBar"
+import Upgrades from "./Upgrades"
 
 class Game extends Component {
     constructor(){
         super()
         this.state = {
-            currentIncome: number
+            currentIncome: 0
         }
     }
 
@@ -16,8 +18,8 @@ class Game extends Component {
 
     render() {
         return (
-            <div>
-                <PlayerInfo />
+            <div className="gameCont">
+                <UserInfoBar />
                 <Upgrades />
             </div>
         )

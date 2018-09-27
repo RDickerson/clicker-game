@@ -1,0 +1,47 @@
+.radio > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.radio > input + img{ /* IMAGE STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.radio > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:2px solid #f00;
+}
+
+body {
+    background-color: blue;
+}
+
+.gameCont{
+
+}
+
+
+
+#upgradeCont{
+
+}
+
+#highScoresCont{
+
+}
+
+#logInCont{
+
+}
+
+#logInBttn{
+
+}
+
+#signUpBttn{
+
+}
+
+
+#signUpForm{
+
+}
+

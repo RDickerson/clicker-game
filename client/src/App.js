@@ -1,10 +1,12 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
+import LogIn from "./components/login/LogIn"
+import Game from "./components/game/Game"
 
 const App = () => {
+
   return (
     <React.Fragment>
-      <Nav />
       <Switch>
         <Route exact path="/" component={ LogIn } />
         <Route path="/game" component={ Game } />
