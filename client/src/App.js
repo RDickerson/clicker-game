@@ -73,6 +73,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Switch>
+
           {/* props is what routes give you history location match */}
           <Route exact path="/" render={props => 
           <Home 
