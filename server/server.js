@@ -1,6 +1,5 @@
 var express = require('express')
 var app = express()
-var uuidv4 = require('uuid/v4')
 var morgan = require("morgan")
 var mongoose = require('mongoose')
 require('dotenv').config()
