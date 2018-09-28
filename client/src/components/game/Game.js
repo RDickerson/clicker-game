@@ -16,6 +16,20 @@ class Game extends Component {
 
     //any functions that change income amount
 
+    coffeeUpgrade = () => {
+        //add $10 more ipc
+        this.setState(prevState => {
+            ipc: prevState.ipc + 10
+        })
+        //change opacity while active
+        //time active for 1 min
+        //cant activeate again for 5 min
+    }
+
+    laptopUpgrade = () => {
+        //add $100 more ipc
+    }
+
     render() {
         return (
             <div className="gameCont">
