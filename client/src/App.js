@@ -1,6 +1,6 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
-import LogIn from "./components/login/LogIn"
+import LogIn from "./components/home/Home"
 import Game from "./components/game/Game"
 
 const App = () => {
