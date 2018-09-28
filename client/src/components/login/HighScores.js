@@ -3,10 +3,9 @@ import React from 'react';
 const HighScores = () => {
     return (
         <div id="highScoresCont">
-        <h1>1000</h1>
-        <h1>10</h1>
-            {/* list of username and $bank roll */}
-            username: whatever Score: whatever
+        <h1 id="highScoreTitle"> High Score Board! </h1>
+        <div>Mighty Duck: 1000</div>
+        <div>Don Jose: 10</div>
         </div>
     );
 };
