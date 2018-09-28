@@ -3,6 +3,7 @@ var scoreRouter = express.Router()
 const user = require('../models/score')
 
 
+
 //get all and post
 scoreRouter.route('/')
     .get((req, res)=>{
