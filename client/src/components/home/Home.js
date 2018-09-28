@@ -6,15 +6,14 @@ class LogIn extends Component {
     constructor(){
         super()
         this.state = {
-            //data from get
+            
         }
     }
 
     componentDidMount() {
-        //get data from server
-        //user name
-        //bank roll
+        //get data
     }
+    
 
     mapData = () => {
         //map data from get
@@ -32,7 +31,7 @@ class LogIn extends Component {
                 <SignUpForm />
                 <HighScores />
             </div>
-        );
+        )
     }
 }
 
