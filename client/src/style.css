@@ -1,3 +1,35 @@
+@font-face {
+    font-family: "walkAroundTheBlock";
+    src: url('./fonts/Walk-Around-the-Block.ttf');
+   }
+
+@font-face{
+    font-family: "greekHouse";
+    src: url('./fonts/GreekHouse\ Symbolized_Free.ttf')
+}
+
+@font-face{
+    font-family: "gabuek";
+    src: url('./fonts/gabuek_script/Gabuek\ Script.ttf')
+}
+
+@font-face{
+    font-family: "attraction";
+    src: url('./fonts/attraction/Attraction\ Personal\ Use.ttf')
+}
+  
+@font-face{
+    font-family: "priceDown";
+    src: url('./fonts/pricedown/pricedown\ bl.ttf')
+}
+
+body{
+    margin:0;
+    background-image: url('./images/hw8tbdx.png')
+}
+
+
+
 .radio > input{ /* HIDE RADIO */
     visibility: hidden; /* Makes input not-clickable */
     position: absolute; /* Remove input from document flow */
