@@ -3,32 +3,16 @@
     src: url('./fonts/Walk-Around-the-Block.ttf');
    }
 
+  
 @font-face{
-    font-family: "greekHouse";
-    src: url('./fonts/GreekHouse\ Symbolized_Free.ttf')
+    font-family: "priceDown";
+    src: url('./fonts/pricedown\ bl.ttf')
 }
 
 @font-face{
     font-family: "gabuek";
-    src: url('./fonts/gabuek_script/Gabuek\ Script.ttf')
+    src: url('./fonts/Gabuek\ Script.otf')
 }
-
-@font-face{
-    font-family: "attraction";
-    src: url('./fonts/attraction/Attraction\ Personal\ Use.ttf')
-}
-  
-@font-face{
-    font-family: "priceDown";
-    src: url('./fonts/pricedown/pricedown\ bl.ttf')
-}
-
-body{
-    margin:0;
-    background-image: url('./images/hw8tbdx.png')
-}
-
-
 
 .radio > input{ /* HIDE RADIO */
     visibility: hidden; /* Makes input not-clickable */
@@ -44,6 +28,7 @@ body{
 
 body {
     background-color: blue;
+    margin:0;
 }
 
 .gameCont{
@@ -57,10 +42,24 @@ body {
 }
 
 #highScoresCont{
+    font-family: "gabuek";
+    color: white;
+    font-size: 4vh;
+    text-align: center;
 
 }
 
 #logInCont{
+    font-family: "priceDown";
+    font-size: 5vh;
+    color: white;
+    text-align: center;
+    /* border: 2px solid red; */
+    background-image: url("./images/hw8tbdx\ \(1\).png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
 
 }
 
