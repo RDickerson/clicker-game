@@ -19,9 +19,9 @@ class LogInForm extends Component {
     render() {
         return (
             <form id="signUpForm">
-                User Name:<input id="signInName" type="text" name="userName"/>
-                Password:<input id="signInPassword" type="text" name="password"/>
-                <p id="charSelectTitle">Choose your character:</p>
+                User Name:<input type="text" name="userName"/>
+                Password:<input type="text" name="password"/>
+                <p>Choose your character:</p>
                 <label className="radio">
                     <input type="radio" value="male" 
                         checked={this.state.selectedGender === "male"}

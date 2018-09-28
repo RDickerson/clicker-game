@@ -48,25 +48,8 @@ body {
 
 .gameCont{
 
-   background-image: url('./images/mainBackground.jpg');
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: center;
-   background-size: 100%;
-   height: 1000px;
-
 }
 
-#userInfoBar{
-    color:white;
-    background-color: black;
-    width: 100%;
-    position: fixed;
-    display: flex; 
-
-    
-
-}
 
 
 #upgradeCont{
@@ -74,17 +57,10 @@ body {
 }
 
 #highScoresCont{
-    font-family: "gabuek";
-    color: white; 
 
-}
-
-#highScoreTitle{
-    font-family: "priceDown"
 }
 
 #logInCont{
-    text-align: center; 
 
 }
 
@@ -98,23 +74,6 @@ body {
 
 
 #signUpForm{
-    font-family: "priceDown";
-    font-size: 30px;
-    color: white;
-    padding: 0px; 
 
-}
-
-#signInName{
-/* padding: 5px; */
-}
-
-#signInPassword{
-/* padding: 5px; */
-
-}
-
-#charSelectTitle{
-    font-family: "priceDown"
 }
 

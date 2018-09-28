@@ -1,18 +1,42 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
-import LogIn from "./components/home/Home"
+import Home from "./components/home/Home"
 import Game from "./components/game/Game"
 
-const App = () => {
+const headerAxios = axios.create()
 
-  return (
-    <React.Fragment>
-      <Switch>
-        <Route exact path="/" component={ LogIn } />
-        <Route path="/game" component={ Game } />
-      </Switch>
-    </React.Fragment>
-  )
+headerAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem("token")
+    config.headers.Autherization = `Bearer ${token}`
+    return config
+})
+
+class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      score: []
+    }
+  }
+
+  getData = () => {
+    headerAxios.get('/api/score').then(res => {
+        this.setState({
+            score: res.data
+        })
+    })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Switch>
+          <Route exact path="/" route={props => <Home {...props}/>} />
+          <Route path="/game" route={props => <Game {...props}/>} />
+        </Switch>
+      </React.Fragment>
+    );
+  }
 }
 
-export default App
+export default App;
