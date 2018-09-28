@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     },
     userImage:{
         type: String,
-        required: true
+        required: false
     },
     upgrades:{
         type: Array,
@@ -31,6 +31,12 @@ const userSchema = new mongoose.Schema({
         default: 0
     }
 })
+
+userSchema.methods.withoutPassword = function(){
+    const user = this.toObject()
+    delete user.password
+    return user
+}
 
 module.exports = mongoose.model('user', userSchema)
 
