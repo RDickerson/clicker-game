@@ -3,8 +3,8 @@ import React from "react"
 const Upgrades = (props) => {
     return (
         <div id="upgradeCont">
-            <p>coffee</p>
-            <p>laptop</p>
+            <p onClick={props.coffee}>coffee</p>
+            <p onClick={props.laptop}>laptop</p>
             <p>job</p>
         </div>
     )
