@@ -28,11 +28,13 @@ scoreRouter.route('/')
 scoreRouter.route('/all')
     .get((req, res)=>{
         //returns all
-        Todos.find({},(err,users)=>{
+        User.find({},(err,users)=>{
             if(err) return res.status(500).send(err)
-            return res.status(200).send(users)
-        })
+            return res.status(200).send(users.map((a,i,arr)=>{
+                return {username: a.username, bank: a.bank}
+            }))
     })
+})
 
 // get one, put, delete
 scoreRouter.route('/:id')
