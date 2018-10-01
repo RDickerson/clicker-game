@@ -27,11 +27,19 @@
 }
 
 body {
-    background-color: blue;
+    background-color: black;
+    /* background-image: url("./images/super_gameboy___test_subject_border_by_netnerdy-daf2kkl.png"); */
+
     margin:0;
 }
 
 .gameCont{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    
+
+
 
 }
 
@@ -55,8 +63,7 @@ body {
     color: white;
     text-align: center;
     /* border: 2px solid red; */
-    background-image: url("./images/hw8tbdx\ \(1\).png");
-    background-size: 100%;
+    /* background-size: 100%; */
     background-repeat: no-repeat;
     background-position: center;
 
