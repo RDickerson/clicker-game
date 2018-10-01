@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "walkAroundTheBlock";
+    src: url('./fonts/Walk-Around-the-Block.ttf');
+   }
+
+  
+@font-face{
+    font-family: "priceDown";
+    src: url('./fonts/pricedown\ bl.ttf')
+}
+
+@font-face{
+    font-family: "gabuek";
+    src: url('./fonts/Gabuek\ Script.otf')
+}
+
+.radio > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.radio > input + img{ /* IMAGE STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.radio > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:2px solid #f00;
+}
+
+body {
+    background-color: black;
+    /* background-image: url("./images/super_gameboy___test_subject_border_by_netnerdy-daf2kkl.png"); */
+
+    margin:0;
+}
+
+.gameCont{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    
+
+
+
+}
+
+
+
+#upgradeCont{
+
+}
+
+#highScoresCont{
+    font-family: "gabuek";
+    color: white;
+    font-size: 4vh;
+    text-align: center;
+
+}
+
+#logInCont{
+    font-family: "priceDown";
+    font-size: 5vh;
+    color: white;
+    text-align: center;
+    /* border: 2px solid red; */
+    /* background-size: 100%; */
+    background-repeat: no-repeat;
+    background-position: center;
+
+
+}
+
+#logInBttn{
+
+}
+
+#signUpBttn{
+
+}
+
+
+#signUpForm{
+
+}
+
