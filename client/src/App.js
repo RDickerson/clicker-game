@@ -8,7 +8,7 @@ const headerAxios = axios.create()
 
 headerAxios.interceptors.request.use(config => {
     const token = localStorage.getItem("token")
-    config.headers.Autherization = `Bearer ${token}`
+    config.headers.Authorization = `Bearer ${token}`
     return config
 })
 
@@ -16,40 +16,44 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      user: []
-      
+      user: {
+        username: "",
+        userImage: "",
+        bank: 0,
+        incomePerClick: 0,
+        upgrades: []
+      },
+      isAuthenticated: false
     }
   }
 
+  // componentDidMount(){
+  //   axios.get("/api/scores")
+  // }
+
   getData = () => {
-    headerAxios.get('/api/user').then(res => {
+    headerAxios.get('/api/score').then(res => {
         this.setState({
-            user: res.data,
-            isAuthenticated: false,
+          user: res.data,
         })
     })
   }
 
   signUp = userInfo => {
     axios.post("/auth/signup", userInfo).then(res => {
-        // const user = res.data.user
-        // const token = res.data.token
-        const {user, token} = res.data
-        //Save the user info in local storage
-        localStorage.setItem("token", token)
-        localStorage.setItem("user", JSON.stringify(user))
-        this.authenticate(user)
+      const {user, token} = res.data
+      localStorage.setItem("token", token)
+      localStorage.setItem("user", JSON.stringify(user))
+      this.authenticate(user)
     }).catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
   login = userInfo => {
     axios.post("/auth/login", userInfo).then(res => {
-        // const user = res.data.user
-        // const token = res.data.token
+      console.log(res.data)
         const {user, token} = res.data
-        //Save the user info in local storage
         localStorage.setItem("token", token)
         localStorage.setItem("user", JSON.stringify(user))
         this.authenticate(user)
@@ -70,17 +74,19 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.user)
     return (
       <React.Fragment>
         <Switch>
-
-          {/* props is what routes give you history location match */}
           <Route exact path="/" render={props => 
-          <Home 
-            {...props}
-            signUp={this.signUp}
-            login={this.login} />}/>
-          <Route path="/game" render={props => <Game {...props}/>} />
+            <Home
+              {...props}
+              signUp={this.signUp}
+              login={this.login} />}/>
+          <Route path="/game" render={props => 
+            <Game 
+              {...props}
+              user={this.state.user} />} />
         </Switch>
       </React.Fragment>
     );
