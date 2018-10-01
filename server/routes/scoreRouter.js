@@ -7,12 +7,12 @@ const User = require('../models/user')
 //get all and post
 scoreRouter.route('/')
     .get((req, res)=>{
+        console.log(req)
         //make sure we only get the users data
         User.findOne({_id: req.user._id},(err, user)=>{
             if(err) return res.status(500).send(err)
             return res.status(200).send(user)
-        }) //returns all
-        // Todos.find({ completed: false || req.query.completed})
+        }) 
     })
     // .post((req, res)=>{
     //     console.log(req.body)
@@ -25,10 +25,20 @@ scoreRouter.route('/')
     //     }) //command to save to mongo database
     // })
 
+scoreRouter.route('/all')
+    .get((req, res)=>{
+        //returns all
+        Todos.find({},(err,users)=>{
+            if(err) return res.status(500).send(err)
+            return res.status(200).send(users)
+        })
+    })
+
 // get one, put, delete
 scoreRouter.route('/:id')
 //check for id of post and user
     .get((req, res)=>{
+        console.log(req)
         User.findOne({_id: req.params.id, user: req.user._id},(err, founduser)=>{
             if(err)return res.status(500).send(err)
             return res.status(200).send(founduser)
