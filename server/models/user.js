@@ -33,14 +33,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.methods.withoutPassword = function(){
-    const user = this.toObject()
-    delete user.password
-    return user
-}
-
 //encrypts user password so it is more secure
-
 userSchema.pre("save", function(next){
     const user = this
     if(!user.isModified('password')) return next()
