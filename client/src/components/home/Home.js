@@ -8,6 +8,8 @@ class LogIn extends Component {
     constructor(){
         super()
         this.state = {
+            username: "",
+            password: "",
             selectedGender: "male"
         }
     }
@@ -18,26 +20,48 @@ class LogIn extends Component {
         })
     }
 
-    componentDidMount() {
-        //get data
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
-    
 
-    mapData = () => {
-        //map data from get
+    handleLoginChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
     
-    handleSignUp = () => {
-        //make log in form show up <SignUpForm />
+    handleSignUpSubmit = e => {
+        e.preventDefault()
+        const newUser = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        if (this.state.selectedGender === "male") {
+            newUser.userImage = maleUser
+        } else if (this.state.selectedGender === "female") {
+            newUser.userImage = femaleUser
+        }
+        this.props.signUp(newUser)
     }
-    
+
+    handleLoginSubmit = e => {
+        e.preventDefault()
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.login(user)
+    }
+
     render() {
         return (
             <div id="logInCont">
                 <h1>Clicker Game</h1>
-                <form id="signUpForm">
-                    <input type="text" name="username" value={this.state.username} placeholder="username"/>
-                    <input type="text" name="password" value={this.state.password} placeholder="password"/>
+                <form id="signUpForm" onSubmit={this.handleSignUpSubmit}>
+                    <input onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="username"/>
+                    <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
                     <p>Choose your character:</p>
                     <label className="radio">
                         <input type="radio" value="male" 
@@ -51,13 +75,13 @@ class LogIn extends Component {
                             onChange={this.handleGenderChange}/>
                         <img src={femaleUser} alt="" height="100px"/>
                     </label>
-                    <button id="signUpBttn" onClick={this.props.signUp}>Sign Up</button>
+                    <button id="signUpBttn">Sign Up</button>
                 </form>
                 <HighScores />
-                <form>
-                    <input type="text" name="username" value={this.state.username} placeholder="username"/>
-                    <input type="text" name="password" value={this.state.password} placeholder="password"/>
-                    <button id="logInBttn" onClick={this.props.login}>Log In</button>
+                <form onSubmit={this.handleLoginSubmit}>
+                    <input onChange={this.handleLoginChange} type="text" name="username" value={this.state.username} placeholder="username"/>
+                    <input onChange={this.handleLoginChange} type="password" name="password" value={this.state.password} placeholder="password"/>
+                    <button id="logInBttn">Log In</button>
                 </form>
             </div>
         )
