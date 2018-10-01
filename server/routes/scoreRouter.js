@@ -11,8 +11,7 @@ scoreRouter.route('/')
         User.findOne({_id: req.user._id},(err, user)=>{
             if(err) return res.status(500).send(err)
             return res.status(200).send(user)
-        }) //returns all
-        // Todos.find({ completed: false || req.query.completed})
+        })
     })
     // .post((req, res)=>{
     //     console.log(req.body)
@@ -24,6 +23,17 @@ scoreRouter.route('/')
     //         return res.status(201).send(newSaveduser)
     //     }) //command to save to mongo database
     // })
+
+scoreRouter.route('/all')
+    .get((req, res)=>{
+        //returns all
+        User.find({},(err,users)=>{
+            if(err) return res.status(500).send(err)
+            return res.status(200).send(users.map((a,i,arr)=>{
+                return {username: a.username, bank: a.bank}
+            }))
+    })
+})
 
 // get one, put, delete
 scoreRouter.route('/:id')
