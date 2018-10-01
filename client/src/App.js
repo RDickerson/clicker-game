@@ -21,7 +21,8 @@ class App extends Component {
         userImage: "",
         bank: 0,
         incomePerClick: 0,
-        upgrades: []
+        upgrades: [],
+        _id: ""
       },
       isAuthenticated: false
     }
@@ -32,7 +33,7 @@ class App extends Component {
   // }
 
   getData = () => {
-    headerAxios.get('/api/score').then(res => {
+    headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
         this.setState({
           user: res.data,
         })
