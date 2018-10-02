@@ -7,10 +7,9 @@ import maleUser from "../../images/maleUser.png"
 
 
 class Game extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        const {username, userImage, bank, incomePerClick, upgrades, _id} = props.user
-        console.log("props:", this.props.user.userImage)
+        const { username, userImage, bank, incomePerClick, upgrades, _id } = props.user
         this.state = {
             user: {
                 username,
@@ -54,7 +53,7 @@ class Game extends Component {
         }))
         this.props.update(this.state.user, this.state.user._id)
     }
-    
+
 
     //any functions that change income amount
 
@@ -75,8 +74,8 @@ class Game extends Component {
             this.props.update(this.state.user, this.state.user._id)
         }
     }
-        
-    
+
+
 
     laptopUpgrade = () => {
         //add $100 more ipc
@@ -183,7 +182,7 @@ class Game extends Component {
                     smallJob={this.smallOfficeJobUpgrade}
                     medJob={this.medOfficeJobUpgrade}
                     bigJob={this.bigOfficeJobUpgrade}
-                    />
+                />
             </div>
         )
     }
