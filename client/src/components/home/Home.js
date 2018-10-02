@@ -38,12 +38,8 @@ class Home extends Component {
         e.preventDefault()
         const newUser = {
             username: this.state.username,
-            password: this.state.password
-        }
-        if (this.state.selectedGender === "male") {
-            newUser.userImage = maleUser
-        } else if (this.state.selectedGender === "female") {
-            newUser.userImage = femaleUser
+            password: this.state.password,
+            userImage: this.state.selectedGender
         }
         this.props.signUp(newUser)
     }
@@ -51,8 +47,8 @@ class Home extends Component {
     handleLoginSubmit = e => {
         e.preventDefault()
         const user = {
-            username: this.state.username,
-            password: this.state.password
+            username: this.state.logUsername,
+            password: this.state.logPassword
         }
         this.props.login(user)
     }
@@ -81,8 +77,8 @@ class Home extends Component {
                 </form>
                 <HighScores />
                 <form onSubmit={this.handleLoginSubmit}>
-                    <input onChange={this.handleLoginChange} type="text" name="username" value={this.state.logUsername} placeholder="username"/>
-                    <input onChange={this.handleLoginChange} type="password" name="password" value={this.state.logPassword} placeholder="password"/>
+                    <input onChange={this.handleLoginChange} type="text" name="logUsername" value={this.state.logUsername} placeholder="username"/>
+                    <input onChange={this.handleLoginChange} type="password" name="logPassword" value={this.state.logPassword} placeholder="password"/>
                     <button id="logInBttn">Log In</button>
                 </form>
             </div>
