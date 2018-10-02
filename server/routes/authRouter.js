@@ -13,7 +13,7 @@ authRouter.post('/signup', (req, res)=>{
 
         const newUser = new User(req.body)
         newUser.save((err, user)=> {
-            if(err) return res.status(500).send({success:false, err})
+            if(err) return res.status(500).send({success:false, err: 'Something went wrong!'})
 
             const token = jwt.sign(user.toObject(), process.env.SECRET)
             return res.status(201).send({success:true, user: user.withoutPassword(), token})
@@ -31,12 +31,12 @@ authRouter.post('/login', (req, res)=>{
         }
 
         user.checkPassword(req.body.password, (err, isMatch) => {
-            if(err) return res.status(500).send(err)
-            if(!isMatch) res.status(401).send({ success: false, err: "Email or Password are incorrect"})
+            if(err) return res.status(500).send({success: false, err:"Username or password are incorrect"})
+            if(!isMatch) res.status(401).send({ success: false, err: "Username or Password are incorrect"})
 
             //passwords match. send token and info to client
             const token = jwt.sign(user.toObject(), process.env.SECRET)
-            return res.send({success:true, user: user.toObject(), token})
+            return res.send({success:true, user: user.withoutPassword(), token})
         })
     })
 })
