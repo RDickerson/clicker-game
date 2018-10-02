@@ -51,6 +51,7 @@ class App extends Component {
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
       this.authenticate(user)
+      
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
     })
