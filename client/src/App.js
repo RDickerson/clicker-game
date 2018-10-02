@@ -24,6 +24,10 @@ class App extends Component {
         upgrades: [],
         _id: ""
       },
+      authErr: {
+        status: '',
+        err: '',
+      },
       isAuthenticated: false
     }
   }
@@ -47,7 +51,7 @@ class App extends Component {
       localStorage.setItem("user", JSON.stringify(user))
       this.authenticate(user)
     }).catch(err => {
-      console.log(err)
+      this.authErr(err.response.status, err.response.data.err)
     })
   }
 
@@ -59,7 +63,7 @@ class App extends Component {
         localStorage.setItem("user", JSON.stringify(user))
         this.authenticate(user)
     }).catch(err => {
-        console.log(err)
+      this.authErr(err.response.status, err.response.data.err)
     })
   }
 
@@ -71,6 +75,35 @@ class App extends Component {
         isAuthenticated: true
     }), () => {
         this.getData()
+    })
+  }
+
+  //Bud added authErr 02-10-2018 at lunch. This saves any err to state so it can be displayed on the login page. ie "Username incorrect"
+  authErr = (status, err) => {
+    this.setState(prevstate=>({
+      ...prevstate,
+      authErr: {
+        status: status,
+        err: err
+      }
+    }))
+  }
+
+
+  //Bud added logout functionality 02-10-2018 at lunch. Use where needed
+  logout = () => {
+    localStorage.remove('token')
+    localStorage.remove('user')
+    this.setState({
+      user: {
+        username: "",
+      },
+      isAuthenticated: false,
+      userImage: "",
+      bank: 0,
+      incomePerClick: 0,
+      upgrades: [],
+      _id: ""
     })
   }
 

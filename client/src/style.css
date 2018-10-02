@@ -28,24 +28,39 @@
 
 body {
     background-color: black;
-    /* background-image: url("./images/super_gameboy___test_subject_border_by_netnerdy-daf2kkl.png"); */
-
     margin:0;
 }
 
 .gameCont{
     color:white;
-    display: flex;
-    flex-direction: row;
+    height: 800px;
+    background-image: url('./images/mainBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
     
-
 
 
 }
 
+#userInfoBarDIV{
+    display: flex;
+    background-color: white;
+    color: black;
+    justify-content: center;
+ 
+    
+}
+
+.pTags{
+    padding-right: 10%;
+}
 
 
 #upgradeCont{
+    background-color: white;
+    display: inline-block;
+    color: black;
+    margin-left: 90%;
 
 }
 

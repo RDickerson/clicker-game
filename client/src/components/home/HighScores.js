@@ -27,9 +27,10 @@ class HighScores extends Component{
 
     render(){
         return (
+            // sorted the high score list by bank account, not sure if using a twice will cause a problem
             <div id="highScoresCont">
                 <h1>High Score List</h1>
-                {this.state.users.map(a=>{
+                {this.state.users.sort((a,b) => b.bank - a.bank).map(a=>{
                     <p>{a.username}: ${a.bank}</p>
                 })}
             </div>
