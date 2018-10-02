@@ -2,11 +2,15 @@ import React, { Component } from "react"
 import axios from "axios"
 import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
+import femaleUser from "../../images/femaleUser.png"
+import maleUser from "../../images/maleUser.png"
+
 
 class Game extends Component {
     constructor(props){
         super(props)
         const {username, userImage, bank, incomePerClick, upgrades, _id} = props.user
+        console.log("props:", this.props.user.userImage)
         this.state = {
             user: {
                 username,
@@ -17,14 +21,18 @@ class Game extends Component {
                 _id
               }
         }
-        console.log(this.state.userImage)
     }
-
+    
     //add click to make money functionality
 
     handleIPC = () => {
+        console.log("user:",this.state.user)
+        
         this.setState(prevState => ({
-            bank: prevState.bank + prevState.incomePerClick
+            user: {
+                ...prevState.user,
+                bank: prevState.user.bank + prevState.user.incomePerClick
+            }
         }))
     }
     
@@ -154,10 +162,12 @@ class Game extends Component {
     }
 
     render() {
+        console.log("state:", this.state.user.userImage)
+
         return (
             <div className="gameCont">
                 <UserInfoBar user={this.state.user}/>
-                <img id="userImage" onClick={this.handleIPC} src={this.state.userImage} alt="" />
+                <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
                 <Upgrades 
                     coffee={this.coffeeUpgrade}
                     laptop={this.laptopUpgrade}
