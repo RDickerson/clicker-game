@@ -4,7 +4,7 @@ import femaleUser from "../../images/femaleUser.png"
 import maleUser from "../../images/maleUser.png"
 
 
-class LogIn extends Component {
+class Home extends Component {
     constructor(){
         super()
         this.state = {
@@ -106,4 +106,4 @@ class LogIn extends Component {
 // }   
 // </div>
 
-export default LogIn;
+export default Home;
