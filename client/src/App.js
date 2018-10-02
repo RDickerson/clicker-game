@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import ProtectedRoute from './shared/ProtectedRoute'
 import axios from "axios"
 import Home from "./components/home/Home"
 import Game from "./components/game/Game"
@@ -107,20 +108,38 @@ class App extends Component {
     })
   }
 
+  verify = () => {
+    headerAxios.get('/api/profile')
+        .then(res => {
+            const { user } = res.data
+            this.authenticate(user)
+        })
+        .catch(err => {
+            this.authError("verify", err.status)
+        })
+}
+
   render() {
+    const { isAuthenticated, loading } = this.state
     console.log(this.state.user)
     return (
       <React.Fragment>
         <Switch>
           <Route exact path="/" render={props => 
             <Home
-              {...props}
+              {...this.props}
               signUp={this.signUp}
               login={this.login} />}/>
-          <Route path="/game" render={props => 
-            <Game 
-              {...props}
-              user={this.state.user} />} />
+            
+          <ProtectedRoute 
+              path="/game" 
+              redirectTo="/game"
+              isAuthenticated={ isAuthenticated } 
+              render={() => 
+                <Game 
+                  {...this.props}
+                  user={this.state.user} />}
+              />
         </Switch>
       </React.Fragment>
     );
