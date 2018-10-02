@@ -24,17 +24,6 @@ scoreRouter.route('/')
     //     }) //command to save to mongo database
     // })
 
-scoreRouter.route('/all')
-    .get((req, res)=>{
-        //returns all
-        User.find({},(err,users)=>{
-            if(err) return res.status(500).send(err)
-            return res.status(200).send(users.map((a,i,arr)=>{
-                return {username: a.username, bank: a.bank}
-            }))
-    })
-})
-
 // get one, put, delete
 scoreRouter.route('/:id')
 //check for id of post and user

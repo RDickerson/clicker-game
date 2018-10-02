@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8989
 const scoreRoutes = require('./routes/scoreRouter')
 const authRoutes = require('./routes/authRouter')
 const expressJWT = require('express-jwt')
+const allRoutes = require('./routes/allRouter')
 
 app.use(morgan('dev'))
 app.use(express.json())
@@ -21,6 +22,7 @@ app.use('/api', expressJWT({secret: process.env.SECRET}))
 
 app.use('/score', scoreRoutes)
 app.use('/api/score', scoreRoutes)
+app.use('/all', allRoutes)
 app.use('/auth', authRoutes)
 
 app.listen(PORT, () => {
