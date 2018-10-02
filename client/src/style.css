@@ -57,6 +57,10 @@ body {
 
 
 #upgradeCont{
+    background-color: white;
+    display: inline-block;
+    color: black;
+    margin-left: 90%;
 
 }
 
