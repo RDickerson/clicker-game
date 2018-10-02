@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import ProtectedRoute from './shared/ProtectedRoute'
 import axios from "axios"
 import Home from "./components/home/Home"
 import Game from "./components/game/Game"
@@ -24,6 +25,10 @@ class App extends Component {
         upgrades: [],
         _id: ""
       },
+      authErr: {
+        status: '',
+        err: '',
+      },
       isAuthenticated: false
     }
   }
@@ -46,8 +51,9 @@ class App extends Component {
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
       this.authenticate(user)
+      
     }).catch(err => {
-      console.log(err)
+      this.authErr(err.response.status, err.response.data.err)
     })
   }
 
@@ -59,7 +65,7 @@ class App extends Component {
         localStorage.setItem("user", JSON.stringify(user))
         this.authenticate(user)
     }).catch(err => {
-        console.log(err)
+      this.authErr(err.response.status, err.response.data.err)
     })
   }
 
@@ -74,20 +80,67 @@ class App extends Component {
     })
   }
 
+  //Bud added authErr 02-10-2018 at lunch. This saves any err to state so it can be displayed on the login page. ie "Username incorrect"
+  authErr = (status, err) => {
+    this.setState(prevstate=>({
+      ...prevstate,
+      authErr: {
+        status: status,
+        err: err
+      }
+    }))
+  }
+
+
+  //Bud added logout functionality 02-10-2018 at lunch. Use where needed
+  logout = () => {
+    localStorage.remove('token')
+    localStorage.remove('user')
+    this.setState({
+      user: {
+        username: "",
+      },
+      isAuthenticated: false,
+      userImage: "",
+      bank: 0,
+      incomePerClick: 0,
+      upgrades: [],
+      _id: ""
+    })
+  }
+
+  verify = () => {
+    headerAxios.get('/api/profile')
+        .then(res => {
+            const { user } = res.data
+            this.authenticate(user)
+        })
+        .catch(err => {
+            this.authError("verify", err.status)
+        })
+}
+
   render() {
+    const { isAuthenticated, loading } = this.state
     console.log(this.state.user)
     return (
       <React.Fragment>
         <Switch>
           <Route exact path="/" render={props => 
             <Home
-              {...props}
+              {...this.props}
               signUp={this.signUp}
               login={this.login} />}/>
-          <Route path="/game" render={props => 
-            <Game 
-              {...props}
-              user={this.state.user} />} />
+            
+          <ProtectedRoute 
+              path="/game" 
+              redirectTo="/game"
+              isAuthenticated={ isAuthenticated } 
+              render={() => 
+                <Game 
+                  {...this.props}
+                  user={this.state.user} />}
+              />
         </Switch>
       </React.Fragment>
     );
