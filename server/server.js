@@ -19,6 +19,7 @@ mongoose.connect('mongodb://localhost:27017/user', { useNewUrlParser: true})
 //decode jwt and add req.user to all requests sent to /api
 app.use('/api', expressJWT({secret: process.env.SECRET}))
 
+app.use('/score', scoreRoutes)
 app.use('/api/score', scoreRoutes)
 app.use('/auth', authRoutes)
 
