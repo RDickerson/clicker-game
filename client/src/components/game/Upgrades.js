@@ -11,10 +11,10 @@ const Upgrades = (props) => {
         <div id="upgradeCont">
             <p onClick={props.coffee}>coffee:  <img src={coffee} alt="" height="100px"/></p>
             <p onClick={props.laptop}>laptop: <img src={laptop} alt="" height="100px"/></p>
-            <p >desk: <img src={desk} alt="" height="100px"/></p>
-            <p>Office space Job: <img src={office1} alt="" height="100px"/></p>
-            <p>Mediocre Job: <img src={office2} alt="" height="100px"/></p>
-            <p>Big Money: <img src={office3} alt="" height="100px"/></p>
+            <p onclick={props.desk}>desk: <img src={desk} alt="" height="100px"/></p>
+            <p onClick={props.smallJob}>Office space Job: <img src={office1} alt="" height="100px"/></p>
+            <p onClick={props.medJob}> Mediocre Job: <img src={office2} alt="" height="100px"/></p>
+            <p onClick={props.bigJob}> Big Money: <img src={office3} alt="" height="100px"/></p>
         </div>
     )
 }
