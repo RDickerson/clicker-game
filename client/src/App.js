@@ -51,6 +51,7 @@ class App extends Component {
       localStorage.setItem("token", token)
       localStorage.setItem("user", JSON.stringify(user))
       this.authenticate(user)
+      
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
     })
@@ -125,15 +126,21 @@ class App extends Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route exact path="/" render={props => 
-            <Home
-              {...this.props}
-              signUp={this.signUp}
-              login={this.login} />}/>
-            
+          <Route exact path="/" render={props => !isAuthenticated
+            ? 
+                  <Home
+                    {...this.props}
+                    signUp={this.signUp}
+                    login={this.login} />
+            :
+                  <Game 
+                  {...this.props}
+                  user={this.state.user} />
+          }/>
+
           <ProtectedRoute 
               path="/game" 
-              redirectTo="/game"
+              redirectTo="/"
               isAuthenticated={ isAuthenticated } 
               render={() => 
                 <Game 

@@ -10,7 +10,9 @@ class Home extends Component {
         this.state = {
             username: "",
             password: "",
-            selectedGender: "male"
+            selectedGender: "male",
+            logUsername:"",
+            logPassword:"",
         }
     }
 
@@ -79,31 +81,13 @@ class Home extends Component {
                 </form>
                 <HighScores />
                 <form onSubmit={this.handleLoginSubmit}>
-                    <input onChange={this.handleLoginChange} type="text" name="username" value={this.state.username} placeholder="username"/>
-                    <input onChange={this.handleLoginChange} type="password" name="password" value={this.state.password} placeholder="password"/>
+                    <input onChange={this.handleLoginChange} type="text" name="username" value={this.state.logUsername} placeholder="username"/>
+                    <input onChange={this.handleLoginChange} type="password" name="password" value={this.state.logPassword} placeholder="password"/>
                     <button id="logInBttn">Log In</button>
                 </form>
             </div>
         )
     }
 }
-
-
-// <div className="auth-page">
-// {this.state.formToggle ? <h3>Login</h3> : <h3>Sign Up</h3>}
-// {!this.state.formToggle ? <span onClick={this.toggle}>-Already a Member?</span> : <span onClick={this.toggle}>-New Member?</span>}
-// {!this.state.formToggle 
-//     ? <Form 
-//         inputs={{ username: '', password: '' }}
-//         submit={inputs => this.props.signUp(inputs)}
-//         render={props => <AuthForm {...props} btnText="Sign Up"/>}
-//         reset/>
-//     : <Form 
-//         inputs={{ username: '', password: '' }}
-//         submit={inputs => this.props.login(inputs)}
-//         render={props => <AuthForm {...props} btnText="Login"/>}
-//         reset/>
-// }   
-// </div>
 
 export default Home;

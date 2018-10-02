@@ -17,6 +17,7 @@ class Game extends Component {
                 _id
               }
         }
+        console.log(this.state.userImage)
     }
 
     //add click to make money functionality
@@ -156,7 +157,7 @@ class Game extends Component {
         return (
             <div className="gameCont">
                 <UserInfoBar user={this.state.user}/>
-                {/* Put the handleIPC here. This is where we pull the user image?<img src="" alt=""/> */}
+                <img id="userImage" onClick={this.handleIPC} src={this.state.userImage} alt="" />
                 <Upgrades 
                     coffee={this.coffeeUpgrade}
                     laptop={this.laptopUpgrade}
