@@ -4,9 +4,9 @@ import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
 
 class Game extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        const {username, userImage, bank, incomePerClick, upgrades, _id} = props.user
+        const { username, userImage, bank, incomePerClick, upgrades, _id } = props.user
         this.state = {
             user: {
                 username,
@@ -15,7 +15,7 @@ class Game extends Component {
                 incomePerClick,
                 upgrades,
                 _id
-              }
+            }
         }
         console.log(this.state.userImage)
     }
@@ -27,13 +27,13 @@ class Game extends Component {
             bank: prevState.bank + prevState.incomePerClick
         }))
     }
-    
+
 
     //any functions that change income amount
 
     coffeeUpgrade = () => {
         //add $10 more ipc
-        if(this.state.bank >= 100 && !this.state.upgrades.includes("coffee")) {
+        if (this.state.bank >= 100 && !this.state.upgrades.includes("coffee")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -50,12 +50,12 @@ class Game extends Component {
             })
         }
     }
-        
-    
+
+
 
     laptopUpgrade = () => {
         //add $100 more ipc
-        if(this.state.bank >= 1000 && !this.state.upgrades.includes("laptop")) {
+        if (this.state.bank >= 1000 && !this.state.upgrades.includes("laptop")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -75,7 +75,7 @@ class Game extends Component {
 
     deskUpgrade = () => {
         //add $100 more ipc
-        if(this.state.bank >= 5000 && !this.state.upgrades.includes("desk")) {
+        if (this.state.bank >= 5000 && !this.state.upgrades.includes("desk")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -95,7 +95,7 @@ class Game extends Component {
 
     smallOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 10000 && !this.state.upgrades.includes("smallJob")) {
+        if (this.state.bank >= 10000 && !this.state.upgrades.includes("smallJob")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -115,7 +115,7 @@ class Game extends Component {
 
     medOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 100000 && !this.state.upgrades.includes("medJob")) {
+        if (this.state.bank >= 100000 && !this.state.upgrades.includes("medJob")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -135,7 +135,7 @@ class Game extends Component {
 
     bigOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 1000000 && !this.state.upgrades.includes("bigJob")) {
+        if (this.state.bank >= 1000000 && !this.state.upgrades.includes("bigJob")) {
             //styling
             this.setState(prevState => {
                 return {
@@ -156,16 +156,16 @@ class Game extends Component {
     render() {
         return (
             <div className="gameCont">
-                <UserInfoBar user={this.state.user}/>
+                <UserInfoBar user={this.state.user} />
                 <img id="userImage" onClick={this.handleIPC} src={this.state.userImage} alt="" />
-                <Upgrades 
+                <Upgrades
                     coffee={this.coffeeUpgrade}
                     laptop={this.laptopUpgrade}
                     desk={this.deskUpgrade}
                     smallJob={this.officeJobUpgrade}
                     medJob={this.medOfficeJobUpgrade}
                     bigJob={this.bigOfficeJobUpgrade}
-                    />
+                />
             </div>
         )
     }
