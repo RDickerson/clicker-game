@@ -7,7 +7,7 @@ const Nav = props => {
     return (
         <React.Fragment>
             <div id="userInfoBarDIV">
-                {/* log out button */}
+                <Link to="/" />
                 <p className="pTags">log out</p>
                 <p className="pTags">{props.user.username}</p>
                 <p className="pTags">Current $$$: {props.user.bank}</p>
