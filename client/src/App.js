@@ -45,6 +45,12 @@ class App extends Component {
     })
   }
 
+  postScore = (updates, id) => {
+    headerAxios.put(`/api/score/${id}`, updates).then(res =>{
+        console.log(res)
+    })
+  }
+
   signUp = userInfo => {
     axios.post("/auth/signup", userInfo).then(res => {
       const {user, token} = res.data
@@ -91,24 +97,6 @@ class App extends Component {
     }))
   }
 
-
-  //Bud added logout functionality 02-10-2018 at lunch. Use where needed
-  logout = () => {
-    localStorage.remove('token')
-    localStorage.remove('user')
-    this.setState({
-      user: {
-        username: "",
-      },
-      isAuthenticated: false,
-      userImage: "",
-      bank: 0,
-      incomePerClick: 0,
-      upgrades: [],
-      _id: ""
-    })
-  }
-
   verify = () => {
     headerAxios.get('/api/profile')
         .then(res => {
@@ -135,7 +123,8 @@ class App extends Component {
             :
                   <Game 
                   {...this.props}
-                  user={this.state.user} />
+                  user={this.state.user}
+                  update={this.postScore} />
           }/>
 
           <ProtectedRoute 

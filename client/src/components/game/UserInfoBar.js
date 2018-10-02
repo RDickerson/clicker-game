@@ -8,7 +8,7 @@ const Nav = props => {
         <React.Fragment>
             <div id="userInfoBarDIV">
                 <Link to="/" />
-                <p className="pTags">log out</p>
+                <p className="pTags" onClick={props.logout}>log out</p>
                 <p className="pTags">{props.user.username}</p>
                 <p className="pTags">Current $$$: {props.user.bank}</p>
                 <p className="pTags">Income Per Click: {props.user.incomePerClick}</p>

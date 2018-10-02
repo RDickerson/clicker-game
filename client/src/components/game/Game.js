@@ -19,9 +19,27 @@ class Game extends Component {
                 incomePerClick,
                 upgrades,
                 _id
-              }
+              },
+              isAuthenticated: props.isAuthenticated,
         }
     }
+
+    logout = () => {
+        this.props.update(this.state.user, this.state.user._id)
+        localStorage.remove('token')
+        localStorage.remove('user')
+        this.setState({
+          user: {
+            username: "",
+            userImage: "",
+            bank: 0,
+            incomePerClick: 0,
+            upgrades: [],
+            _id: ""
+          },
+          isAuthenticated: false,
+        })
+      }
     
     //add click to make money functionality
 
@@ -34,6 +52,7 @@ class Game extends Component {
                 bank: prevState.user.bank + prevState.user.incomePerClick
             }
         }))
+        this.props.update(this.state.user, this.state.user._id)
     }
     
 
@@ -41,21 +60,19 @@ class Game extends Component {
 
     coffeeUpgrade = () => {
         //add $10 more ipc
-        if(this.state.bank >= 100 && !this.state.upgrades.includes("coffee")) {
+        if(this.state.user.bank >= 100 && !this.state.user.upgrades.includes("coffee")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 10,
-                    bank: prevState.bank - 100,
-                    upgrades: [...prevState, "coffee"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 10,
+                        bank: prevState.user.bank - 100,
+                        upgrades: [...prevState.user.upgrades, "coffee"]
+                    }
                 }
             })
-            const coffeeUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, coffeeUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
         
@@ -63,116 +80,107 @@ class Game extends Component {
 
     laptopUpgrade = () => {
         //add $100 more ipc
-        if(this.state.bank >= 1000 && !this.state.upgrades.includes("laptop")) {
+        if(this.state.user.bank >= 1000 && !this.state.user.upgrades.includes("laptop")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 100,
-                    bank: prevState.bank - 1000,
-                    upgrades: [...prevState, "laptop"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 100,
+                        bank: prevState.user.bank - 1000,
+                        upgrades: [...prevState.user.upgrades, "laptop"]
+                    }
                 }
             })
-            const laptopUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, laptopUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
 
     deskUpgrade = () => {
         //add $100 more ipc
-        if(this.state.bank >= 5000 && !this.state.upgrades.includes("desk")) {
+        if(this.state.user.bank >= 5000 && !this.state.user.upgrades.includes("desk")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 500,
-                    bank: prevState.bank - 5000,
-                    upgrades: [...prevState, "desk"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 500,
+                        bank: prevState.user.bank - 5000,
+                        upgrades: [...prevState.user.upgrades, "desk"]
+                    }
                 }
             })
-            const deskUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, deskUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
 
     smallOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 10000 && !this.state.upgrades.includes("smallJob")) {
+        if(this.state.user.bank >= 10000 && !this.state.user.upgrades.includes("smallJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 1000,
-                    bank: prevState.bank - 10000,
-                    upgrades: [...prevState, "smallJob"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 1000,
+                        bank: prevState.user.bank - 10000,
+                        upgrades: [...prevState.user.upgrades, "smallJob"]
+                    }
                 }
             })
-            const smallOfficeJobUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, smallOfficeJobUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
 
     medOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 100000 && !this.state.upgrades.includes("medJob")) {
+        if(this.state.user.bank >= 100000 && !this.state.user.upgrades.includes("medJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 10000,
-                    bank: prevState.bank - 100000,
-                    upgrades: [...prevState, "medJob"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 10000,
+                        bank: prevState.user.bank - 100000,
+                        upgrades: [...prevState.user.upgrades, "medJob"]
+                    }
                 }
             })
-            const medOfficeJobUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, medOfficeJobUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
 
     bigOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.bank >= 1000000 && !this.state.upgrades.includes("bigJob")) {
+        if(this.state.user.bank >= 1000000 && !this.state.user.upgrades.includes("bigJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    reincomePerClick: prevState.incomePerClick + 10000,
-                    bank: prevState.bank - 1000000,
-                    upgrades: [...prevState, "bigJob"]
+                    user:{
+                        ...prevState.user,
+                        incomePerClick: prevState.user.incomePerClick + 100000,
+                        bank: prevState.user.bank - 1000000,
+                        upgrades: [...prevState.user.upgrades, "bigJob"]
+                    }
                 }
             })
-            const bigOfficeJobUpgrade = {
-                upgrades: this.state.upgrades
-            }
-            axios.put(`/api/score/${this.state.user._id}`, bigOfficeJobUpgrade).then(res => {
-                console.log(res)
-            })
+            this.props.update(this.state.user, this.state.user._id)
         }
     }
 
     render() {
-        console.log("state:", this.state.user.userImage)
+        // console.log("state:", this.state.user)
 
         return (
             <div className="gameCont">
-                <UserInfoBar user={this.state.user}/>
+                <UserInfoBar user={this.state.user}
+                            logout={this.logout}/>
                 <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
                 <Upgrades 
                     coffee={this.coffeeUpgrade}
                     laptop={this.laptopUpgrade}
                     desk={this.deskUpgrade}
-                    smallJob={this.officeJobUpgrade}
+                    smallJob={this.smallOfficeJobUpgrade}
                     medJob={this.medOfficeJobUpgrade}
                     bigJob={this.bigOfficeJobUpgrade}
                     />
