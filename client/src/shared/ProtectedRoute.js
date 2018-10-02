@@ -6,7 +6,7 @@ const ProtectedRoute = props => {
     return (
         isAuthenticated 
             ?   props.render()
-            :   <Redirect to="/game"/>
+            :   <Redirect to="/"/>
         )
     }
 
