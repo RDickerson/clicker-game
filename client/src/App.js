@@ -154,6 +154,7 @@ class App extends Component {
             :
                   <Game 
                   {...this.props}
+                  logout={this.logout}
                   user={this.state.user}
                   update={this.postScore}
                   togplay={this.togplay}
