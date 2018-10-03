@@ -38,6 +38,7 @@ class App extends Component {
   // }
 
   getData = () => {
+    console.log('get data')
     headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
         this.setState({
           user: res.data,
@@ -46,6 +47,7 @@ class App extends Component {
   }
 
   postScore = (updates, id) => {
+    console.log('put score')
     headerAxios.put(`/api/score/${id}`, updates).then(res =>{
         console.log(res)
     })
