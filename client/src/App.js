@@ -4,6 +4,7 @@ import ProtectedRoute from './shared/ProtectedRoute'
 import axios from "axios"
 import Home from "./components/home/Home"
 import Game from "./components/game/Game"
+import myaudio from './shared/sounds.js'
 
 const headerAxios = axios.create()
 
@@ -29,10 +30,13 @@ class App extends Component {
         status: '',
         err: '',
       },
-      isAuthenticated: false
+      isAuthenticated: false,
+      mute: false,
     }
+    myaudio.play()
+    myaudio.loop = true
   }
-
+  
   getData = () => {
     headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
         this.setState({
@@ -122,7 +126,17 @@ class App extends Component {
         .catch(err => {
             this.authError("verify", err.status)
         })
-}
+  }
+
+  togplay = () => {
+    if(!myaudio.paused){
+        myaudio.pause();
+      }
+    else{
+        myaudio.play()
+      }
+      this.setState(prevstate=>({mute: !prevstate.mute}))
+  }
 
   render() {
     const { isAuthenticated, loading } = this.state
@@ -134,13 +148,16 @@ class App extends Component {
                   <Home
                     {...this.props}
                     signUp={this.signUp}
-                    login={this.login} />
+                    login={this.login} 
+                    togplay={this.togplay}
+                    mute={this.state.mute}/>
             :
                   <Game 
                   {...this.props}
                   user={this.state.user}
-                  update={this.postScore} 
-                  logout={this.logout}/>
+                  update={this.postScore}
+                  togplay={this.togplay}
+                  mute={this.state.mute} />
           }/>
 
           <ProtectedRoute 
@@ -150,7 +167,10 @@ class App extends Component {
               render={() => 
                 <Game 
                   {...this.props}
-                  user={this.state.user} />}
+                  user={this.state.user}
+                  update={this.postScore}
+                  togplay={this.togplay}
+                  mute={this.state.mute} />}
               />
         </Switch>
       </React.Fragment>

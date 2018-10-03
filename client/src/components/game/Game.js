@@ -167,7 +167,16 @@ class Game extends Component {
                     smallJob={this.smallOfficeJobUpgrade}
                     medJob={this.medOfficeJobUpgrade}
                     bigJob={this.bigOfficeJobUpgrade}
-                />
+                    />
+
+                <div className="audio" onClick={this.props.togplay}>
+                {!this.props.mute ? (
+                    <img className="play" src={require("../../images/play.png")} alt="mute"></img>
+                    ) : (
+                    <img className="play" src={require("../../images/mute.png")} alt="play"></img>
+                    )}
+                </div>
+
             </div>
         )
     }
