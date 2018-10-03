@@ -4,13 +4,13 @@ import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
 import femaleUser from "../../images/femaleUser.png"
 import maleUser from "../../images/maleUser.png"
-import background from "../../images/mainBackground.jpg"
 
 
 class Game extends Component {
-    constructor(props) {
+    constructor(props){
         super(props)
-        const { username, userImage, bank, incomePerClick, upgrades, _id } = props.user
+        const {username, userImage, bank, incomePerClick, upgrades, _id} = props.user
+        console.log("props:", this.props.user.userImage)
         this.state = {
             user: {
                 username,
@@ -54,7 +54,7 @@ class Game extends Component {
         }))
         this.props.update(this.state.user, this.state.user._id)
     }
-
+    
 
     //any functions that change income amount
 
@@ -75,8 +75,8 @@ class Game extends Component {
             this.props.update(this.state.user, this.state.user._id)
         }
     }
-
-
+        
+    
 
     laptopUpgrade = () => {
         //add $100 more ipc
@@ -175,8 +175,6 @@ class Game extends Component {
             <div className="gameCont">
                 <UserInfoBar user={this.state.user}
                             logout={this.logout}/>
-            <div id="gameInnerDiv">
-                {/* <img id="forcedBackground" src={background} /> */}
                 <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
                 <Upgrades 
                     coffee={this.coffeeUpgrade}
@@ -185,8 +183,7 @@ class Game extends Component {
                     smallJob={this.smallOfficeJobUpgrade}
                     medJob={this.medOfficeJobUpgrade}
                     bigJob={this.bigOfficeJobUpgrade}
-                />
-                </div>
+                    />
             </div>
         )
     }

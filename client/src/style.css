@@ -31,20 +31,52 @@ body {
     margin:0;
 }
 
+/* #forcedBackground{
+    display: flex;
+    
+} */
+
 .gameCont{
-    color:white;
+    /* color:black;
     height: 800px;
     background-image: url('./images/mainBackground.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
-    
+    background-size: 100%; */
+    font-family: priceDown;
+    height: 100vh;
+    width: 100vw;
+}
 
+#gameInnerDiv{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    color:black;
+    height: 100vh;
+    background-image: url('./images/mainBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+
+
+#userImage{
+    width: 250px;
+    margin-left: 50%;
+    margin-top: 45%;
+
+
+}
+
+#userImage:active{
+    
 
 }
 
 #userInfoBarDIV{
     display: flex;
-    background-color: white;
+    background-color:rgb(7, 107, 7);
+    border: solid white 1px;
     color: black;
     justify-content: center;
  
@@ -53,16 +85,27 @@ body {
 
 .pTags{
     padding-right: 10%;
+    color: white;
+
 }
+
 
 
 #upgradeCont{
-    background-color: white;
+    background-color:rgb(7, 107, 7);
+    border: solid white 1px;
     display: inline-block;
-    color: black;
-    margin-left: 90%;
+    color: white;
+    position: absolute;
+    left: 90%;
+    /* top: -0px; */
+    text-align: center;
+    padding-right: 1%;
+    padding-bottom: 2.75%;
+
 
 }
+
 
 #highScoresCont{
     font-family: "gabuek";
@@ -98,12 +141,71 @@ body {
 
 }
 
-#userImage {
-    width: 300px;
+
+
+@media only screen and (max-width: 2000px){ 
+
+
+
+#upgradeCont{
+    padding-right: 2%;
+    padding-bottom: 3%;
+
+
 }
+
+
+
+}
+
 
 @media only screen and (max-width: 1200px){ 
 
+    #gameInnerDiv{
+        height: 90vh;
+    }
+
+    #upgradeCont{
+        padding-right: none;
+        padding-bottom: none;
+        /* display: flex; */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /* bottom: 0; */
+        width: 98%;
+        height: 70px;
+        overflow:scroll;
+        display: inline-block;
+        /* display: grid; */
+
+
+/* 
+        display: flex;
+        flex-direction: row
+   
+ */
+
+
+
+    }
+    .pTags{
+        display: inline
+    
+    }
+
+    .upgradePhotos{
+        width: 50px;
+        height: 50px;
+        margin-left: 50%;
+    
+    }
+
+
+    .upgradeTitles{
+        /* height: 6vh */
+     
+    }
 
     
 }
