@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import axios from "axios"
+import {withRouter} from "react-router-dom"
 import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
 import femaleUser from "../../images/femaleUser.png"
@@ -24,26 +24,13 @@ class Game extends Component {
     }
 
     logout = () => {
-        this.props.update(this.state.user, this.state.user._id)
-        localStorage.remove('token')
-        localStorage.remove('user')
-        this.setState({
-          user: {
-            username: "",
-            userImage: "",
-            bank: 0,
-            incomePerClick: 0,
-            upgrades: [],
-            _id: ""
-          },
-          isAuthenticated: false,
-        })
-      }
-    
+        this.props.logout(this.state.user, this.state.user._id)
+        
+        
+    }
+        
     //add click to make money functionality
-
     handleIPC = () => {
-        console.log("user:",this.state.user)
         
         this.setState(prevState => ({
             user: {
@@ -168,8 +155,6 @@ class Game extends Component {
     }
 
     render() {
-        // console.log("state:", this.state.user)
-
         return (
             <div className="gameCont">
                 <UserInfoBar user={this.state.user}
@@ -197,4 +182,4 @@ class Game extends Component {
     }
 }
 
-export default Game
+export default withRouter(Game)

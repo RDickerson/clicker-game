@@ -36,12 +36,8 @@ class App extends Component {
     myaudio.play()
     myaudio.loop = true
   }
-
-  // componentDidMount(){
-  // }
-
+  
   getData = () => {
-    console.log('get data')
     headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
         this.setState({
           user: res.data,
@@ -50,12 +46,30 @@ class App extends Component {
   }
 
   postScore = (updates, id) => {
-    console.log('put score')
     headerAxios.put(`/api/score/${id}`, updates).then(res =>{
-        console.log(res)
+        console.log("user has been updated", res)
     })
   }
 
+  logout = (updates, id) => {
+    headerAxios.put(`/api/score/${id}`, updates).then(res =>{
+      console.log("user has been logged out", res)
+      localStorage.removeItem("token")
+      localStorage.removeItem('user')
+      this.setState({
+        user: {
+          username: "",
+          userImage: "",
+          bank: 0,
+          incomePerClick: 0,
+          upgrades: [],
+          _id: ""
+        },
+        isAuthenticated: false,
+      })
+    })
+  }
+ 
   signUp = userInfo => {
     axios.post("/auth/signup", userInfo).then(res => {
       const {user, token} = res.data
@@ -65,29 +79,30 @@ class App extends Component {
       
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
+      alert(this.state.authErr.err)
     })
   }
 
   login = userInfo => {
     axios.post("/auth/login", userInfo).then(res => {
-      console.log(res.data)
-        const {user, token} = res.data
-        localStorage.setItem("token", token)
-        localStorage.setItem("user", JSON.stringify(user))
-        this.authenticate(user)
+      const {user, token} = res.data
+      localStorage.setItem("token", token)
+      localStorage.setItem("user", JSON.stringify(user))
+      this.authenticate(user)
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
+      alert(this.state.authErr.err)
     })
   }
 
   authenticate = user => {
     this.setState(prevState => ({
-        user: {
-            ...user
-        },
-        isAuthenticated: true
+      user: {
+          ...user
+      },
+      isAuthenticated: true
     }), () => {
-        this.getData()
+      this.getData()
     })
   }
 
@@ -125,7 +140,6 @@ class App extends Component {
 
   render() {
     const { isAuthenticated, loading } = this.state
-    console.log(this.state.user)
     return (
       <React.Fragment>
         <Switch>
