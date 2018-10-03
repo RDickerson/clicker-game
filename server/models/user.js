@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     incomePerClick:{
         type: Number,
         required: false,
-        default: 1000000
+        default: 1
     },
     bank:{
         type: Number,
