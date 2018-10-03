@@ -81,6 +81,15 @@ class Home extends Component {
                     <input onChange={this.handleLoginChange} type="password" name="logPassword" value={this.state.logPassword} placeholder="password"/>
                     <button id="logInBttn">Log In</button>
                 </form>
+
+                <div className="audio" onClick={this.props.togplay}>
+                {!this.props.mute ? (
+                    <img className="play" src={require("../../images/play.png")} alt="mute"></img>
+                    ) : (
+                    <img className="play" src={require("../../images/mute.png")} alt="play"></img>
+                    )}
+                </div>
+
             </div>
         )
     }
