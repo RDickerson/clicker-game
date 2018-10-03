@@ -26,6 +26,7 @@ class HighScores extends Component{
     }
 
     render(){
+        console.log(this.state.users)
         return (
             // sorted the high score list by bank account, not sure if using a twice will cause a problem
             <div id="highScoresCont">
