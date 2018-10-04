@@ -1,0 +1,30 @@
+{
+  "name": "WebDev-Clicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.2.18",
+    "morgan": "^1.9.1",
+    "react-s-alert": "^1.4.1",
+    "sweetalert": "^2.1.0",
+    "uuid": "^3.3.2"
+  },
+  "engines": {
+    "node": "8.11.4"
+}
+}
