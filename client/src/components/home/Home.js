@@ -56,7 +56,7 @@ class Home extends Component {
     render() {
         return (
             <div id="logInCont">
-                <h1>Dev Game</h1>
+                <h1>Dev Clicker</h1>
                 <h6>Start a new game by signing up:</h6>
                 <form id="signUpForm" onSubmit={this.handleSignUpSubmit}>
                     <input className="inputs" onChange={this.handleChange} type="text" name="username" value={this.state.username} placeholder="username" />
