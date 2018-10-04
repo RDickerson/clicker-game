@@ -35,10 +35,12 @@ class App extends Component {
       isAuthenticated: false,
       mute: false,
     }
+  }
+
+  componentDidMount(){
     myaudio.play()
     myaudio.loop = true
   }
-
   
   getData = () => {
     headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
