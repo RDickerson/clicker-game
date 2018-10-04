@@ -35,7 +35,7 @@ class App extends Component {
       isAuthenticated: false,
       mute: false,
     }
-    // myaudio.play()
+    myaudio.play()
     myaudio.loop = true
   }
 
