@@ -78,10 +78,14 @@ body {
 #userImage{
     position: absolute;
     width: 250px;
-    left: 50%;
-    top: 60%;
+    left: 40%;
+    top: 40%;
 }
 
+.upgradeObjClass{
+    position: relative;
+    top: 3vh; 
+}
 
 #userImage:active{
     animation: pulse 0.5s ease-in infinite;
@@ -137,8 +141,21 @@ body {
 .upgradePhotos{
     width: 55px;
     height: 55px;
+    opacity: .50;
 
 }
+
+.clickableUpgradeTitles{
+    opacity: initial;
+
+}
+
+.purchased{
+    border: red solid 1px;
+}
+
+
+
 
 #lastUpgrade{
     margin-bottom: 0;
@@ -197,6 +214,10 @@ body {
 
 
 @media only screen and (max-width: 2000px){ 
+
+    /* .upgradeObjClass{
+        padding-top: 10px;
+    } */
 
     .homeButtons{
         background-color: white;
@@ -304,7 +325,8 @@ body {
 
 
        #userImage{
-        top: 47%;
+        left: 30%;
+        top: 10%;
         }
 
         #upgradeCont{
@@ -323,7 +345,7 @@ body {
 
 
        #userImage{
-        top: 35%;
+        /* top: 35%; */
         left: 30%
 
         }
@@ -340,8 +362,8 @@ body {
             align-items: flex-end;}
 
        #userImage{
-        top: 40%;
-        left: 30%
+        /* top: 40%; */
+        left: 20%
 
         }
 
@@ -357,11 +379,11 @@ body {
             align-items: flex-end;}
 
 
-       #userImage{
+       /* #userImage{
         top: 36%;
         left: 25%
 
-        }
+        } */
 
         .pTags{
             font-size: 12px;

@@ -58,7 +58,6 @@ class Game extends Component {
                         incomePerClick: prevState.user.incomePerClick + 10,
                         bank: prevState.user.bank - 100,
                         upgrades: [...prevState.user.upgrades, "coffee"],
-                        isAvailable: prevState.isAvailable[0] = false
                     }
                 }
             })

@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     bank:{
         type: Number,
         required: false,
-        default: 0
+        default: 1000000000000000000
     }
 })
 
