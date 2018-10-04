@@ -10,6 +10,7 @@ class HighScores extends Component{
         }
     }
 
+    
     componentDidMount=()=>{
         axios.get('/all').then(res => {
             const data = res.data.sort((a,b) => { 
