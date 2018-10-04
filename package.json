@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +24,7 @@
     "sweetalert": "^2.1.0",
     "uuid": "^3.3.2"
   },
-  "proxy": "http://localhost:8989"
+  "engines": {
+    "node": "8.11.4"
+}
 }
