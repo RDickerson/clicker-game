@@ -35,7 +35,9 @@ class HighScores extends Component{
             // sorted the high score list by bank account, not sure if using a twice will cause a problem
             <div id="highScoresCont">
                 <h1>High Score List</h1>
-                {scores}
+                <div id="scoresCont">
+                    {scores}
+                </div>
 
             </div>
         );
