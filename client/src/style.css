@@ -35,8 +35,8 @@ body {
 #logoutBttn{
     background-color: black;
     font-family: priceDown;
-    padding-right: 7px;
-    padding-left: 7px;
+    padding-right: 1vh;
+    padding-left: 1vh;
     margin-right: 10%;
  
 }
@@ -69,6 +69,7 @@ body {
     height: 90vh;
     background-image: url('./images/mainBackground.jpg');
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
     position: relative;
 
@@ -83,8 +84,6 @@ body {
 }
 
 .upgradeObjClass{
-    position: relative;
-    top: 3vh; 
 }
 
 #userImage:active{
@@ -106,6 +105,7 @@ body {
 #userInfoBarDIV{
     display: flex;
     background-color:rgb(7, 107, 7);
+    /* height:10vh; */
     border: solid white 1px;
     color: black;
     justify-content: center;
@@ -128,12 +128,12 @@ body {
     display: inline-block;
     color: white;
     position: absolute;
-    left: 90%;
+    right:0;
     /* top: -0px; */
     text-align: center;
-    padding-right: 2%;
-    padding-bottom: 2.75%;
-    height: 99%;
+    /* padding-right: 2%; */
+    /* padding-bottom: 2.75%; */
+    height: 90vh;
 
 
 }
@@ -215,9 +215,10 @@ body {
 
 @media only screen and (max-width: 2000px){ 
 
-    /* .upgradeObjClass{
-        padding-top: 10px;
-    } */
+    .upgradeObjClass{
+        position: relative;
+        top: 1vh;
+    }
 
     .homeButtons{
         background-color: white;
@@ -285,16 +286,6 @@ body {
         overflow:scroll;
        align-items: flex-end;
         /* display: grid; */
-
-
-/* 
-        display: flex;
-        flex-direction: row
-   
- */
-
-
-
     }
     .pTags{
         display: inline

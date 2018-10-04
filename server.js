@@ -14,8 +14,10 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "client", "build")))
 
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/secrets", {useNewUrlParser:true})
+
 //connect to mongo
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/secrets", {useNewUrlParser:true})
+mongoose.connect('mongodb://localhost:27017/user', { useNewUrlParser: true})
     .then(()=>console.log('Successfully connected to mongoDB'))
     .catch(err=>console.log(err))
 
