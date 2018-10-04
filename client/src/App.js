@@ -24,7 +24,7 @@ class App extends Component {
         username: "",
         userImage: "",
         bank: 0,
-        incomePerClick: 0,
+        incomePerClick: 1,
         upgrades: [],
         _id: ""
       },
@@ -35,7 +35,7 @@ class App extends Component {
       isAuthenticated: false,
       mute: false,
     }
-    // myaudio.play()
+    myaudio.play()
     myaudio.loop = true
   }
 
@@ -64,7 +64,7 @@ class App extends Component {
           username: "",
           userImage: "",
           bank: 0,
-          incomePerClick: 0,
+          incomePerClick: 1,
           upgrades: [],
           _id: ""
         },
