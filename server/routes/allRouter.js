@@ -4,7 +4,7 @@ const User = require('../models/user')
 
 
 
-allRouter.route('/all')
+allRouter.route('/')
     .get((req, res)=>{
         //returns all
         User.find({},(err,users)=>{

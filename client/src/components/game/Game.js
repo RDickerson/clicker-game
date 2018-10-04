@@ -1,16 +1,17 @@
 import React, { Component } from "react"
-import axios from "axios"
+import { withRouter } from "react-router-dom"
 import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
 import femaleUser from "../../images/femaleUser.png"
 import maleUser from "../../images/maleUser.png"
+import chaChing from '../../shared/chaChing'
+// import background from "../../images/mainBackground.jpg"
 
 
 class Game extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        const {username, userImage, bank, incomePerClick, upgrades, _id} = props.user
-        console.log("props:", this.props.user.userImage)
+        const { username, userImage, bank, incomePerClick, upgrades, _id } = props.user
         this.state = {
             user: {
                 username,
@@ -19,33 +20,23 @@ class Game extends Component {
                 incomePerClick,
                 upgrades,
                 _id
-              },
-              isAuthenticated: props.isAuthenticated,
+            },
+            isAuthenticated: props.isAuthenticated,
+            isClicked: [false, false, false, false, false, false],
+            isAvailable: [false, false, false, false, false, false],
         }
     }
 
     logout = () => {
-        this.props.update(this.state.user, this.state.user._id)
-        localStorage.remove('token')
-        localStorage.remove('user')
-        this.setState({
-          user: {
-            username: "",
-            userImage: "",
-            bank: 0,
-            incomePerClick: 0,
-            upgrades: [],
-            _id: ""
-          },
-          isAuthenticated: false,
-        })
-      }
-    
-    //add click to make money functionality
+        this.props.logout(this.state.user, this.state.user._id)
 
+
+    }
+
+    //add click to make money functionality
     handleIPC = () => {
-        console.log("user:",this.state.user)
-        
+        chaChing.play()
+
         this.setState(prevState => ({
             user: {
                 ...prevState.user,
@@ -54,37 +45,38 @@ class Game extends Component {
         }))
         this.props.update(this.state.user, this.state.user._id)
     }
-    
+
 
     //any functions that change income amount
 
     coffeeUpgrade = () => {
         //add $10 more ipc
-        if(this.state.user.bank >= 100 && !this.state.user.upgrades.includes("coffee")) {
+        if (this.state.user.bank >= 100 && !this.state.user.upgrades.includes("coffee")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 10,
                         bank: prevState.user.bank - 100,
-                        upgrades: [...prevState.user.upgrades, "coffee"]
+                        upgrades: [...prevState.user.upgrades, "coffee"],
+                        isAvailable: prevState.isAvailable[0] = false
                     }
                 }
             })
             this.props.update(this.state.user, this.state.user._id)
         }
     }
-        
-    
+
+
 
     laptopUpgrade = () => {
         //add $100 more ipc
-        if(this.state.user.bank >= 1000 && !this.state.user.upgrades.includes("laptop")) {
+        if (this.state.user.bank >= 1000 && !this.state.user.upgrades.includes("laptop")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 100,
                         bank: prevState.user.bank - 1000,
@@ -98,11 +90,11 @@ class Game extends Component {
 
     deskUpgrade = () => {
         //add $100 more ipc
-        if(this.state.user.bank >= 5000 && !this.state.user.upgrades.includes("desk")) {
+        if (this.state.user.bank >= 5000 && !this.state.user.upgrades.includes("desk")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 500,
                         bank: prevState.user.bank - 5000,
@@ -116,11 +108,11 @@ class Game extends Component {
 
     smallOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.user.bank >= 10000 && !this.state.user.upgrades.includes("smallJob")) {
+        if (this.state.user.bank >= 10000 && !this.state.user.upgrades.includes("smallJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 1000,
                         bank: prevState.user.bank - 10000,
@@ -134,11 +126,11 @@ class Game extends Component {
 
     medOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.user.bank >= 100000 && !this.state.user.upgrades.includes("medJob")) {
+        if (this.state.user.bank >= 100000 && !this.state.user.upgrades.includes("medJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 10000,
                         bank: prevState.user.bank - 100000,
@@ -152,11 +144,11 @@ class Game extends Component {
 
     bigOfficeJobUpgrade = () => {
         //add $1000 more ipc
-        if(this.state.user.bank >= 1000000 && !this.state.user.upgrades.includes("bigJob")) {
+        if (this.state.user.bank >= 1000000 && !this.state.user.upgrades.includes("bigJob")) {
             //styling
             this.setState(prevState => {
                 return {
-                    user:{
+                    user: {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 100000,
                         bank: prevState.user.bank - 1000000,
@@ -169,33 +161,35 @@ class Game extends Component {
     }
 
     render() {
-        // console.log("state:", this.state.user)
-
         return (
             <div className="gameCont">
                 <UserInfoBar user={this.state.user}
-                            logout={this.logout}/>
-                <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
-                <Upgrades 
-                    coffee={this.coffeeUpgrade}
-                    laptop={this.laptopUpgrade}
-                    desk={this.deskUpgrade}
-                    smallJob={this.smallOfficeJobUpgrade}
-                    medJob={this.medOfficeJobUpgrade}
-                    bigJob={this.bigOfficeJobUpgrade}
+                    logout={this.logout} />
+                <div id="gameInnerDiv">
+                    {/* <img id="forcedBackground" src={background} /> */}
+                    <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
+                    <Upgrades
+                        isAvailable={this.state.isAvailable}
+                        isClicked={this.state.isClicked}
+                        coffee={this.coffeeUpgrade}
+                        laptop={this.laptopUpgrade}
+                        desk={this.deskUpgrade}
+                        smallJob={this.smallOfficeJobUpgrade}
+                        medJob={this.medOfficeJobUpgrade}
+                        bigJob={this.bigOfficeJobUpgrade}
                     />
 
-                <div className="audio" onClick={this.props.togplay}>
-                {!this.props.mute ? (
-                    <img className="play" src={require("../../images/play.png")} alt="mute"></img>
-                    ) : (
-                    <img className="play" src={require("../../images/mute.png")} alt="play"></img>
-                    )}
+                    <div className="audio" onClick={this.props.togplay}>
+                        {!this.props.mute ? (
+                            <img className="play" src={require("../../images/play.png")} alt="mute"></img>
+                        ) : (
+                                <img className="play" src={require("../../images/mute.png")} alt="play"></img>
+                            )}
+                    </div>
                 </div>
-
             </div>
         )
     }
 }
 
-export default Game
+export default withRouter(Game)

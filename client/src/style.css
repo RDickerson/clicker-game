@@ -29,22 +29,80 @@
 body {
     background-color: black;
     margin:0;
+    cursor: pointer;
 }
 
+#logoutBttn{
+    background-color: black;
+    font-family: priceDown;
+    padding-right: 7px;
+    padding-left: 7px;
+    margin-right: 10%;
+ 
+}
+
+.homeButtons{
+    background-color: white;
+
+}
+
+/* #forcedBackground{
+    display: flex;
+    
+} */
+
 .gameCont{
-    color:white;
+    /* color:black;
     height: 800px;
     background-image: url('./images/mainBackground.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
-    
+    background-size: 100%; */
+    font-family: priceDown;
+    height: 100vh;
+    width: 100vw;
+}
 
+#gameInnerDiv{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    color:black;
+    height: 90vh;
+    background-image: url('./images/mainBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 
 }
 
+
+#userImage{
+    position: absolute;
+    width: 250px;
+    left: 50%;
+    top: 60%;
+}
+
+
+#userImage:active{
+    animation: pulse 0.5s ease-in infinite;
+    
+}
+
+.upgradePhotos:active{
+    animation: pulse 0.5s ease-in infinite;
+    
+}
+
+
+@keyframes pulse{
+    25%  {transform: scale(0.9);}
+    75%  {transform: scale(1.1);}
+  }
+
 #userInfoBarDIV{
     display: flex;
-    background-color: white;
+    background-color:rgb(7, 107, 7);
+    border: solid white 1px;
     color: black;
     justify-content: center;
  
@@ -53,23 +111,56 @@ body {
 
 .pTags{
     padding-right: 10%;
+    color: white;
+
 }
+
 
 
 #upgradeCont{
-    background-color: white;
+    background-color:rgb(7, 107, 7);
+    border: solid white 1px;
+    border-top-color:rgb(7, 107, 7) ;
     display: inline-block;
-    color: black;
-    margin-left: 90%;
+    color: white;
+    position: absolute;
+    left: 90%;
+    /* top: -0px; */
+    text-align: center;
+    padding-right: 2%;
+    padding-bottom: 2.75%;
+    height: 99%;
+
 
 }
 
+.upgradePhotos{
+    width: 55px;
+    height: 55px;
+
+}
+
+#lastUpgrade{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
 #highScoresCont{
+    width: 50vw;
+    margin-bottom: 20px;
     font-family: "gabuek";
     color: white;
     font-size: 4vh;
     text-align: center;
+    margin-left: 25%;
 
+}
+
+#scoresCont{
+    border: solid 1px red;
+    height: 100px;
+    overflow: scroll;
 }
 
 #logInCont{
@@ -81,13 +172,18 @@ body {
     /* background-size: 100%; */
     background-repeat: no-repeat;
     background-position: center;
+}
 
-
+.inputs{
+    margin-left: 3vh;
 }
 
 #logInBttn{
+    background-color: white
 
 }
+
+
 
 #signUpBttn{
 
@@ -98,8 +194,27 @@ body {
 
 }
 
-#userImage {
-    width: 300px;
+
+
+@media only screen and (max-width: 2000px){ 
+
+    .homeButtons{
+        background-color: white;
+    }
+
+    #logInBttn{
+        background-color: white
+    
+    }
+
+
+
+#upgradeCont{
+    padding-right: 2%;
+    padding-bottom: 3%;
+}
+
+
 }
 
 .audio{
@@ -113,12 +228,151 @@ body {
 }
 
 .play{
+    position: relative;
   height: 10vh;
   width: 10vh;
 }
 
+
 @media only screen and (max-width: 1200px){ 
 
+    /* .play{
+        position: absolute;
+        bottom: 450px;
+    } */
+
+    .audio{
+        position: absolute;
+        bottom: 450px;
+    }
+
+    #gameInnerDiv{
+        height: 90vh;
+    }
+
+    #upgradeCont{
+        padding-right: none;
+        padding-bottom: none;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        /* bottom: 0; */
+        width: 98%;
+        height: 70px;
+        overflow:scroll;
+       align-items: flex-end;
+        /* display: grid; */
+
+
+/* 
+        display: flex;
+        flex-direction: row
+   
+ */
+
+
+
+    }
+    .pTags{
+        display: inline
+
+    }
+
+    .upgradePhotos{
+        margin-left: 5px;
+        margin-right: 5%;
+        width: 50px;
+        height: 50px;
+        /* margin-left: 50%; */
+    
+    }
+
+
+    .upgradeTitles{
+        /* height: 6vh */
+     
+    }
+
+
+    @media only screen and (max-width: 900px){
+
+        #gameInnerDiv{
+            height: 70vh;
+        }
+
+
+       #userImage{
+        top: 47%;
+        }
+
+        #upgradeCont{
+            align-items: flex-end;}
+
+    }
+
+    @media only screen and (max-width: 500px){
+
+        /* #gameInnerDiv{
+            height: 70vh;
+        } */
+
+        #upgradeCont{
+            align-items: flex-end;}
+
+
+       #userImage{
+        top: 35%;
+        left: 30%
+
+        }
+
+    }
+
+    @media only screen and (max-width: 500px){
+
+        #gameInnerDiv{
+            height: 85vh;
+        }
+
+        #upgradeCont{
+            align-items: flex-end;}
+
+       #userImage{
+        top: 40%;
+        left: 30%
+
+        }
+
+    }
+
+    @media only screen and (max-width: 365px){
+
+        #gameInnerDiv{
+            height: 90vh;
+      
+        }
+        #upgradeCont{
+            align-items: flex-end;}
+
+
+       #userImage{
+        top: 36%;
+        left: 25%
+
+        }
+
+        .pTags{
+            font-size: 12px;
+    
+        }
+
+        #IPC{
+            padding-right: 0;
+        }
+
+    }
 
     
 }
