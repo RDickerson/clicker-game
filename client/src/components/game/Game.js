@@ -22,8 +22,6 @@ class Game extends Component {
                 _id
             },
             isAuthenticated: props.isAuthenticated,
-            isClicked: [false, false, false, false, false, false],
-            isAvailable: [false, false, false, false, false, false],
         }
     }
 
@@ -169,8 +167,7 @@ class Game extends Component {
                     {/* <img id="forcedBackground" src={background} /> */}
                     <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
                     <Upgrades
-                        isAvailable={this.state.isAvailable}
-                        isClicked={this.state.isClicked}
+                        user={this.state.user}
                         coffee={this.coffeeUpgrade}
                         laptop={this.laptopUpgrade}
                         desk={this.deskUpgrade}
