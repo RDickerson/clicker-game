@@ -38,7 +38,9 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log(myaudio.paused)
     myaudio.play()
+    console.log("should be false", myaudio.paused)
     myaudio.loop = true
   }
   
