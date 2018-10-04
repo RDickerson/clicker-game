@@ -28,9 +28,7 @@ class HighScores extends Component{
     }
 
     render(){
-        // console.log(this.state.users)
        const scores = this.state.users.map(user=> <HighScoresList {...user}/> )
-       console.log(scores)
         return (
             // sorted the high score list by bank account, not sure if using a twice will cause a problem
             <div id="highScoresCont">
