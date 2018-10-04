@@ -24,7 +24,7 @@ class App extends Component {
         username: "",
         userImage: "",
         bank: 0,
-        incomePerClick: 0,
+        incomePerClick: 1,
         upgrades: [],
         _id: ""
       },
@@ -38,7 +38,9 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log(myaudio.paused)
     myaudio.play()
+    console.log("should be false", myaudio.paused)
     myaudio.loop = true
   }
   
@@ -66,7 +68,7 @@ class App extends Component {
           username: "",
           userImage: "",
           bank: 0,
-          incomePerClick: 0,
+          incomePerClick: 1,
           upgrades: [],
           _id: ""
         },
