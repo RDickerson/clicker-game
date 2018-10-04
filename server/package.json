@@ -18,6 +18,8 @@
     "mongodb": "^3.1.6",
     "mongoose": "^5.2.18",
     "morgan": "^1.9.1",
+    "react-s-alert": "^1.4.1",
+    "sweetalert": "^2.1.0",
     "uuid": "^3.3.2"
   },
   "proxy": "http://localhost:8989"

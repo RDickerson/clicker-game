@@ -4,7 +4,8 @@ import UserInfoBar from "./UserInfoBar"
 import Upgrades from "./Upgrades"
 import femaleUser from "../../images/femaleUser.png"
 import maleUser from "../../images/maleUser.png"
-import background from "../../images/mainBackground.jpg"
+import chaChing from '../../shared/chaChing'
+// import background from "../../images/mainBackground.jpg"
 
 
 class Game extends Component {
@@ -21,6 +22,8 @@ class Game extends Component {
                 _id
             },
             isAuthenticated: props.isAuthenticated,
+            isClicked: [false, false, false, false, false, false],
+            isAvailable: [false, false, false, false, false, false],
         }
     }
 
@@ -32,6 +35,7 @@ class Game extends Component {
 
     //add click to make money functionality
     handleIPC = () => {
+        chaChing.play()
 
         this.setState(prevState => ({
             user: {
@@ -55,7 +59,8 @@ class Game extends Component {
                         ...prevState.user,
                         incomePerClick: prevState.user.incomePerClick + 10,
                         bank: prevState.user.bank - 100,
-                        upgrades: [...prevState.user.upgrades, "coffee"]
+                        upgrades: [...prevState.user.upgrades, "coffee"],
+                        isAvailable: prevState.isAvailable[0] = false
                     }
                 }
             })
@@ -164,6 +169,8 @@ class Game extends Component {
                     {/* <img id="forcedBackground" src={background} /> */}
                     <img id="userImage" onClick={this.handleIPC} src={this.state.user.userImage === "male" ? maleUser : femaleUser} alt="" />
                     <Upgrades
+                        isAvailable={this.state.isAvailable}
+                        isClicked={this.state.isClicked}
                         coffee={this.coffeeUpgrade}
                         laptop={this.laptopUpgrade}
                         desk={this.deskUpgrade}

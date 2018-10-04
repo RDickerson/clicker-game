@@ -5,6 +5,8 @@ import axios from "axios"
 import Home from "./components/home/Home"
 import Game from "./components/game/Game"
 import myaudio from './shared/sounds.js'
+import swal from 'sweetalert';
+
 
 const headerAxios = axios.create()
 
@@ -36,6 +38,7 @@ class App extends Component {
     myaudio.play()
     myaudio.loop = true
   }
+
   
   getData = () => {
     headerAxios.get(`/api/score/${this.state.user._id}`).then(res => {
@@ -79,7 +82,7 @@ class App extends Component {
       
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
-      alert(this.state.authErr.err)
+      swal(this.state.authErr.err)
     })
   }
 
@@ -91,7 +94,7 @@ class App extends Component {
       this.authenticate(user)
     }).catch(err => {
       this.authErr(err.response.status, err.response.data.err)
-      alert(this.state.authErr.err)
+      swal(this.state.authErr.err)
     })
   }
 
